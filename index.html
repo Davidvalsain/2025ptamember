@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanceur PTA</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      padding: 20px 40px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <button id="launchBtn">Êtes-vous prêt ?</button>
+  <script>
+    document.getElementById('launchBtn').addEventListener('click', function() {
+      // Open the main page in a new tab/window
+      var newWindow = window.open("https://davidvalsain.github.io/pta2025member/", "_blank");
+      // Attempt to close this launcher page
+      window.close();
+    });
+  </script>
+</body>
+</html>
