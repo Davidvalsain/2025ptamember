@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanceur PTA</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      padding: 20px 40px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .message-wrapper {
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Default Content: Launch Button -->
+  <button id="launchBtn">Êtes-vous prêt ?</button>
+
+  <script>
+    window.addEventListener('load', function() {
+      // Check if the thank you flag is in the URL
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('thankyou') === '1') {
+        // Replace page content with a thank-you message
+        document.body.innerHTML = `
+          <div class="message-wrapper">
+            <h1>Merci !</h1>
+            <p>Votre mise à jour a été enregistrée avec succès.</p>
+          </div>
+        `;
+        // Remove the query parameter from the URL so it doesn’t persist in history
+        history.replaceState(null, '', window.location.pathname);
+        
+        // Push a new state to intercept the back button
+        history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', function() {
+          // Redirect to WhatsApp when the back button is pressed
+          window.location.href = 'whatsapp://';
+        });
+      }
+    });
+
+    document.getElementById('launchBtn').addEventListener('click', function() {
+      // Open the main page in a new tab/window
+      var newWindow = window.open("https://davidvalsain.github.io/pta2025member/", "_blank");
+      // Attempt to close this launcher page
+      window.close();
+    });
+  </script>
+</body>
+</html>
